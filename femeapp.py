@@ -101,3 +101,13 @@ def logout():
     session['logged_in'] = False
     flash('You are now logged out')
     return redirect(url_for('login'))
+
+@app.errorhandler(404)
+def page_not_found(error):
+    app.logger.info(f'Page not found: {request.url}')
+    return render_template('404.html', error=error)
+
+if __name__ == "__main__":
+    app.run(host=os.environ.get('IP'),
+            port=(os.environ.get('PORT')),
+            debug=False)
