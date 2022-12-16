@@ -40,14 +40,14 @@ def signup():
                 'name': request.form['username'].capitalize(),
                 'email': request.form['userEmail'].lower(),
                 'password': hashpass,
-                'user_herbs': [],
+                'user_moments': [],
                 'reg_date': time
             })
             session['username'] = request.form['username']
             session['logged_in'] = True
             flash('Hello' + session['username'] +
                   'You have successfull signedup')
-            return redirect(url_for('all_herbs',))
+            return redirect(url_for('all_moments',))
         flash('That email or username already exists')
         return render_template('signup.html')
     return render_template('signup.html')
@@ -65,14 +65,14 @@ def signup():
                 'name': request.form['username'].capitalize(),
                 'email': request.form['userEmail'].lower(),
                 'password': hashpass,
-                'user_herbs': [],
+                'user_moments': [],
                 'reg_date': time
             })
             session['username'] = request.form['username']
             session['logged_in'] = True
             flash('Hello' + session['username'] +
                   'You have successfull signedup')
-            return redirect(url_for('all_herbs',))
+            return redirect(url_for('all_moments',))
         flash('That email or username already exists')
         return render_template('signup.html')
     return render_template('signup.html')
@@ -106,6 +106,7 @@ def logout():
 def page_not_found(error):
     app.logger.info(f'Page not found: {request.url}')
     return render_template('404.html', error=error)
+    
 
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
